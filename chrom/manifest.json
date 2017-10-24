@@ -9,12 +9,14 @@
   "content_scripts":[
     {
 	  "matches": ["http://*/*","https://*/*"],
-	  "js":["content_scripts.js"]
+	  "js":["content_scripts.js"],
+    "run_at": "document_end"
 	}
-  ],
+],
   "permissions": [
     "contextMenus",
-	"tabs",
-	"http://*/*"
+    "tabs",
+    "https://*/*",
+    "http://*/*"
   ]
-}  
+}
