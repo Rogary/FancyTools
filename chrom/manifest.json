@@ -1,0 +1,22 @@
+{
+  "name": "fancy",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "复制所有下载链接",
+  "background": {
+    "page": "page.html"
+  },
+  "content_scripts":[
+    {
+	  "matches": ["http://*/*","https://*/*"],
+	  "js":["content_scripts.js"],
+    "run_at": "document_end"
+	}
+],
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "https://*/*",
+    "http://*/*"
+  ]
+}
