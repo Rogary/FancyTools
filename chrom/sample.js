@@ -1,19 +1,16 @@
-
 function genericOnClick(info, tab) {
-  // 向content-script.js发送请求信息
   chrome.tabs.sendMessage(tab.id, {greeting: "hello"}, function(response) {
-      console.log(response.toString());　　
-      var clipboard = new Clipboard(response.toString());//实例化
+      document.getElementById('text').value = response.toString();
+      //这个元素其实是内容的载体，修改里面的指以共剪切板js使用
+      var clipboard = new Clipboard('.btn');
       clipboard.on('success', function(e) {
-          console.log(e);
-          e.clearSelection();
+          console.log('success'+e);
       });
-
       clipboard.on('error', function(e) {
-          console.log(e);
+          console.log('error'+ e);
       });
+      document.getElementById('btn').click(); //由于这个button需要被触发才能进行复制操作所以这里要点击一下
   });
 }
 var id = chrome.contextMenus.create({"title": "复制所有下载链接", "contexts":["page"],
-                   "onclick": genericOnClick});
-console.log("'" + "' item:" + id);
+                   "onclick": genericOnClick});// 创建一个右键菜单
