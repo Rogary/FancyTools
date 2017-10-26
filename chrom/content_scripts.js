@@ -11,8 +11,8 @@ chrome.extension.onMessage.addListener(//创建监听器
             do
             {
               result=regx.exec(html);
-              if (result!=null) {
-                results[i]=result;
+              if (result!=null&&result.length>0&&result[0].length>15) {
+                results[i]=result[0];
                 i++;
               }
             }while (result!=null)
